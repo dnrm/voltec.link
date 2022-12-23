@@ -1,11 +1,11 @@
 import React from "react";
 
-const Button = ({ children, filled }) => {
+const Button = ({ children, cta }) => {
   return (
     <div
       className={`border-2 border-primary ${
-        filled ? "bg-primary" : "bg-[#84c3dc]"
-      } inline-block py-3 px-16 rounded-lg text-white tracking-tight text-xl`}
+        cta ? "font-semibold bg-primary text-white" : 'text-primary'
+      } inline-block py-3 px-16 rounded-lg text-xl`}
     >
       {children}
     </div>

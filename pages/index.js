@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import Navigation from "../components/Navigation";
 import Button from "../components/Button";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
             invitations.
           </p>
           <div className="cta text-center">
-            <Button filled={true}>Start creating</Button>
+            <Button cta={true}>Start creating</Button>
           </div>
         </section>
         <section
@@ -48,9 +49,9 @@ export default function Home() {
                 <g
                   id="Page-1"
                   stroke="none"
-                  stroke-width="1"
+                  strokeWidth="1"
                   fill="currentColor"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                 >
                   <g
                     id="Black-Next.js"
@@ -84,7 +85,7 @@ export default function Home() {
             <div className="mongodb text-[#e1e1e1] w-52">
               <svg
                 id="Layer_1"
-                data-name="Layer 1"
+                dataName="Layer 1"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 1112.61 300"
                 fill="currentColor"
@@ -167,8 +168,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <div className="a">a</div>
       </main>
+      <Footer />
     </div>
   );
 }
