@@ -2,8 +2,8 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <div className="w-full p-5 flex flex-col gap-6">
-      <div className="links flex justify-start items-center gap-8">
+    <div className="w-full p-6 flex flex-col gap-6">
+      <div className="links flex flex-col md:flex-row justify-start items-start md:items-center gap-8">
         <div className="logo flex justify-start gap-2 items-center">
           <div className="logo-icon">
             <Image
@@ -18,7 +18,7 @@ const Footer = () => {
             vol<span className="text-[#489FD0]">tec</span>.link
           </h1>
         </div>
-        <div className="links-to-socials flex justify-start items-center gap-4 text-neutral-400">
+        <div className="links-to-socials flex flex-col md:flex-row justify-start items-start md:items-center gap-4 text-neutral-400">
           <a
             href="https://instagram.com/voltecrobotics6647"
             target={"_blank"}
