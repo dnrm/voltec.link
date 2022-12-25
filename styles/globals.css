@@ -152,6 +152,17 @@
   background: radial-gradient(
     ellipse at center,
     rgba(129, 190, 225, 1) 0%,
-    rgba(253, 254, 255, 0.75) 70%
+    rgba(253, 254, 255, 0) 70%
   );
+}
+
+@media (prefers-color-scheme: dark) {
+  .home-cover-image-background {
+    background: rgb(129, 190, 225);
+    background: radial-gradient(
+      ellipse at center,
+      rgba(92, 135, 161, 0.75) 0%,
+      rgba(253, 254, 255, 0) 70%
+    );
+  }
 }

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Navigation = () => {
   return (
-    <div className="w-full px-6 md:px-8 py-8 flex justify-between items-center">
+    <div className="w-full px-6 md:px-8 py-8 flex justify-between items-center dark:bg-dark">
       <div className="logo flex justify-center items-center gap-2">
         <div className="logo-icon">
           <Image
@@ -15,7 +15,7 @@ const Navigation = () => {
             alt="Voltec Logo"
           />
         </div>
-        <h1 className="text-2xl md:text-3xl tracking-tight font-bold">
+        <h1 className="text-2xl md:text-3xl tracking-tight font-bold dark:text-headings-dark">
           vol<span className="text-[#489FD0]">tec</span>.link
         </h1>
       </div>

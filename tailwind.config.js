@@ -10,6 +10,9 @@ module.exports = {
         primary: "#63B7E5",
         technologies: "#c2c2c2",
         headings: "#454545",
+        dark: "#222222",
+        "secondary-dark": "#e1e1e1",
+        "headings-dark": "#F4F4F4"
       },
       fontFamily: {
         "sans": "Neue Campton, sans-serif", 

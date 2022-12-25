@@ -29,15 +29,15 @@ export default function Home() {
         </svg>
       </div>
       <Navigation />
-      <main className="grid grid-cols-1 gap-14 md:gap-28 z-30 pb-16">
+      <main className="grid grid-cols-1 gap-14 md:gap-28 z-30 pb-16 dark:bg-dark">
         <section
           id="introduction"
           className="pt-24 md:pt-36 flex flex-col gap-6 md:gap-10 max-w-7xl mx-auto p-5"
         >
-          <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-center text-headings leading-[0.85]">
+          <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-center text-headings dark:text-headings-dark leading-[0.85]">
             Share VOLTEC’s digital content with ease
           </h1>
-          <p className="text-[#808080] leading-loose text-center text-base md:text-lg max-w-xl md:max-w-2xl mx-auto">
+          <p className="text-[#808080] dark:text-secondary-dark leading-loose text-center text-base md:text-lg max-w-xl md:max-w-2xl mx-auto">
             Create easily-shareable and customised links for whatever type of
             content, wether it is social media accounts, invitations, or meeting
             invitations.
@@ -50,11 +50,19 @@ export default function Home() {
           id="screenshot"
           className="flex justify-center items-center p-5"
         >
-          <div className="gradient absolute w-screen h-[45%] md:h-full home-cover-image-background -z-30" />
+          <div className="gradient absolute w-screen h-[45%] md:h-full home-cover-image-background" />
           <Image
             src="/home-cover.png"
             alt="Screenshot of voltec.link web app dashboard"
-            className="mx-auto rounded-2xl drop-shadow-lg"
+            className="mx-auto rounded-2xl drop-shadow-lg dark:hidden z-10"
+            height={500}
+            width={1000}
+          />
+          {/* // TODO FIX SHADOW IN DARK MODE */}
+          <Image
+            src="/home-cover-dark.png"
+            alt="Screenshot of voltec.link web app dashboard"
+            className="mx-auto rounded-2xl shadow-neutral-700 shadow-lg hidden dark:block z-10"
             height={500}
             width={1000}
           />
@@ -164,7 +172,7 @@ export default function Home() {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 630">
                 <rect width="630" height="630" fill="currentColor" />
                 <path
-                  fill="white"
+                  fill={"white"}
                   d="m423.2 492.19c12.69 20.72 29.2 35.95 58.4 35.95 24.53 0 40.2-12.26 40.2-29.2 0-20.3-16.1-27.49-43.1-39.3l-14.8-6.35c-42.72-18.2-71.1-41-71.1-89.2 0-44.4 33.83-78.2 86.7-78.2 37.64 0 64.7 13.1 84.2 47.4l-46.1 29.6c-10.15-18.2-21.1-25.37-38.1-25.37-17.34 0-28.33 11-28.33 25.37 0 17.76 11 24.95 36.4 35.95l14.8 6.34c50.3 21.57 78.7 43.56 78.7 93 0 53.3-41.87 82.5-98.1 82.5-54.98 0-90.5-26.2-107.88-60.54zm-209.13 5.13c9.3 16.5 17.76 30.45 38.1 30.45 19.45 0 31.72-7.61 31.72-37.2v-201.3h59.2v202.1c0 61.3-35.94 89.2-88.4 89.2-47.4 0-74.85-24.53-88.81-54.075z"
                 />
               </svg>
@@ -188,43 +196,46 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section id="benefits" className="grid grid-cols-1 gap-36 md:gap-64 max-w-6xl mx-auto px-5 py-4 md:pt-10 md:pb-20">
+        <section
+          id="benefits"
+          className="grid grid-cols-1 gap-36 md:gap-64 max-w-6xl mx-auto px-5 py-4 md:pt-10 md:pb-20"
+        >
           <div className="reach flex flex-col justify-center items-start">
-            <span className="number absolute text-[20em] text-[#eeeeee] font-black -z-10 pl-16">
+            <span className="number absolute text-[20em] text-[#eeeeee] dark:text-[#333333] font-black pl-16">
               1
             </span>
-            <h2 className="text-2xl font-bold md:text-5xl w-full text-left">
+            <h2 className="text-2xl font-bold md:text-5xl w-full text-left z-10 text-headings dark:text-headings-dark">
               <span className="text-8xl text-primary">Reach</span> a wider
               audience
             </h2>
-            <p className="leading-loose text-[#808080] text-base md:text-lg">
+            <p className="leading-loose text-[#808080] dark:text-secondary-dark z-10 text-base md:text-lg">
               With custom and shorter links, people will find it easier to
               remember and type it out, therefore averaging more diffusion and
               reach of your content.
             </p>
           </div>
           <div className="create flex flex-col justify-center items-start">
-            <span className="number absolute text-[20em] text-[#eeeeee] font-black -z-10 pl-16">
+            <span className="number absolute text-[20em] text-[#eeeeee] dark:text-[#333333] font-black pl-16">
               2
             </span>
-            <h2 className="text-2xl font-bold md:text-5xl w-full text-left">
+            <h2 className="text-2xl font-bold md:text-5xl w-full text-left z-10 text-headings dark:text-headings-dark">
               <span className="text-8xl text-primary">Create</span> rememberable
               links
             </h2>
-            <p className="leading-loose text-[#808080] text-base md:text-lg">
+            <p className="leading-loose text-[#808080] dark:text-secondary-dark z-10 text-base md:text-lg">
               With this app you’ll be able to create short links that will make
               the distribution of your content easy and effective.
             </p>
           </div>
           <div className="create flex flex-col justify-center items-start">
-            <span className="number absolute text-[20em] text-[#eeeeee] font-black -z-10 pl-16">
+            <span className="number absolute text-[20em] text-[#eeeeee] dark:text-[#333333] font-black pl-16">
               3
             </span>
-            <h2 className="text-2xl font-bold md:text-5xl w-full text-left">
+            <h2 className="text-2xl font-bold md:text-5xl w-full text-left z-10 text-headings dark:text-headings-dark">
               <span className="text-8xl text-primary">Boost</span> your
               campaign’s impact
             </h2>
-            <p className="leading-loose text-[#808080] text-base md:text-lg">
+            <p className="leading-loose text-[#808080] dark:text-secondary-dark z-10 text-base md:text-lg">
               The shorter your URL is, the faster and easier it is for your
               target audience to access your content.
             </p>
