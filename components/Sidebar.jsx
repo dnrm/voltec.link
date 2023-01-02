@@ -1,10 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const Sidebar = () => {
+  const session = useSession();
+
   return (
-    <div className="max-w-full h-screen border-r-2 border-neutral-100 dark:border-neutral-700 flex flex-col">
+    <div className="w-[25em] h-screen border-r-2 border-neutral-100 dark:border-neutral-700 flex-col">
       <Link
         href="/"
         className="logo flex justify-start items-center gap-2 pt-36 px-8 pb-16"
@@ -119,11 +122,15 @@ const Sidebar = () => {
       </div>
       <Link
         href="/dashboard/settings"
-        className="user px-8 mt-auto pb-8 flex gap-2 justify-start items-center"
+        className="user px-8 pb-8 flex gap-2 justify-start items-center"
       >
         <div className="profile-picture h-16 w-16">
           <Image
-            src="https://i.redd.it/klkxe1p2llz41.jpg"
+            src={
+              (session.status == "authenticated" &&
+                session.data?.user?.image) ||
+              "https://i.redd.it/klkxe1p2llz41.jpg"
+            }
             alt="clairo"
             className="rounded-full border-2 shadow-lg"
             height={250}
@@ -131,7 +138,11 @@ const Sidebar = () => {
           />
         </div>
         <div className="info flex flex-col gap-1">
-          <h1 className="text-lg text-headings dark:text-headings-dark">claire@cottril.com</h1>
+          <h1 className="text-base text-headings dark:text-headings-dark">
+            {session.status == "authenticated"
+              ? session.data.user?.email
+              : "Guest"}
+          </h1>
           <div>
             <span className="bg-primary py-1 px-2 rounded-full text-white text-sm">
               Admin

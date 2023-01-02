@@ -4,11 +4,11 @@ import Header from "./Header";
 
 const Layout = ({ children, pageTitle }) => {
   return (
-    <div className="text-headings dark:text-headings-dark grid-cols-5 grid">
-      <div className="col-span-1">
+    <div className="text-headings dark:text-headings-dark">
+      <div className="hidden absolute md:block">
         <Sidebar />
       </div>
-      <main className="col-span-4">
+      <main className="md:ml-[25em]">
         <Header heading={pageTitle} />
         {children}
       </main>

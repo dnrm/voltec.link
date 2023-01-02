@@ -5,7 +5,7 @@ const Button = ({ children, cta }) => {
     <div
       className={`border-2 border-primary ${
         cta ? "font-semibold bg-primary text-white" : 'text-primary'
-      } inline-block py-3 px-16 rounded-lg text-xl`}
+      } py-3 px-16 rounded-lg text-xl inline-block`}
     >
       {children}
     </div>

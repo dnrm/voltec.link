@@ -6,7 +6,7 @@ const index = () => {
 
 export default index;
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   return {
     redirect: {
       destination: "/dashboard/links",
