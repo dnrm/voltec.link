@@ -50,7 +50,7 @@ export default function Home() {
           id="screenshot"
           className="flex justify-center items-center p-5"
         >
-          <div className="gradient absolute w-screen h-[45%] md:h-full home-cover-image-background" />
+          <div className="gradient absolute w-full h-[45%] md:h-full home-cover-image-background" />
           <Image
             src="/home-cover.png"
             alt="Screenshot of voltec.link web app dashboard"
