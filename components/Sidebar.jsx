@@ -7,7 +7,7 @@ const Sidebar = () => {
   const session = useSession();
 
   return (
-    <div className="w-[25em] h-screen border-r-2 border-neutral-100 dark:border-neutral-700 flex-col">
+    <div className="w-[25em] fixed h-screen border-r-2 border-[#E1E1E1] dark:border-neutral-700 flex-col">
       <Link
         href="/"
         className="logo flex justify-start items-center gap-2 pt-36 px-8 pb-16"
