@@ -9,22 +9,42 @@ export default function Home() {
   return (
     <div>
       <Head>
-<title>voltec.link – VOLTEC&lsquo;s URL Shortener</title>
-<meta name="title" content="voltec.link – VOLTEC's URL Shortener" />
-<meta name="description" content="Create easily-shareable and customised links for whatever type of content, wether it is social media accounts, invitations, or meeting invitations." />
+        <title>voltec.link – VOLTEC&lsquo;s URL Shortener</title>
+        <meta name="title" content="voltec.link – VOLTEC's URL Shortener" />
+        <meta
+          name="description"
+          content="Create easily-shareable and customised links for whatever type of content, wether it is social media accounts, invitations, or meeting invitations."
+        />
 
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://metatags.io/" />
-<meta property="og:title" content="voltec.link – VOLTEC's URL Shortener" />
-<meta property="og:description" content="Create easily-shareable and customised links for whatever type of content, wether it is social media accounts, invitations, or meeting invitations." />
-<meta property="og:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://volteclink.medina.dev/" />
+        <meta
+          property="og:title"
+          content="voltec.link – VOLTEC's URL Shortener"
+        />
+        <meta
+          property="og:description"
+          content="Create easily-shareable and customised links for whatever type of content, wether it is social media accounts, invitations, or meeting invitations."
+        />
+        <meta
+          property="og:image"
+          content="/meta.png"
+        />
 
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://metatags.io/" />
-<meta property="twitter:title" content="voltec.link – VOLTEC's URL Shortener" />
-<meta property="twitter:description" content="Create easily-shareable and customised links for whatever type of content, wether it is social media accounts, invitations, or meeting invitations." />
-<meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png" />
-
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://volteclink.medina.dev/" />
+        <meta
+          property="twitter:title"
+          content="voltec.link – VOLTEC's URL Shortener"
+        />
+        <meta
+          property="twitter:description"
+          content="Create easily-shareable and customised links for whatever type of content, wether it is social media accounts, invitations, or meeting invitations."
+        />
+        <meta
+          property="twitter:image"
+          content="/meta.png"
+        />
       </Head>
       <div className="flex justify-center items-center announcement w-full bg-primary p-2 text-lg text-white font-normal">
         <p className="w-full text-center">🚧 Work in progress 🚧</p>
