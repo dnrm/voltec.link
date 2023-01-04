@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-<title>voltec.link – VOLTEC's URL Shortener</title>
+<title>voltec.link – VOLTEC&lsquo;s URL Shortener</title>
 <meta name="title" content="voltec.link – VOLTEC's URL Shortener" />
 <meta name="description" content="Create easily-shareable and customised links for whatever type of content, wether it is social media accounts, invitations, or meeting invitations." />
 
