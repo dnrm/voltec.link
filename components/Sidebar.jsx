@@ -7,7 +7,7 @@ const Sidebar = () => {
   const session = useSession();
 
   return (
-    <div className="w-[25em] fixed h-screen border-r-2 border-[#E1E1E1] dark:border-neutral-700 flex-col">
+    <div className="bg-white dark:bg-dark z-20 overflow-hidden w-[6em] transition-all duration-200 hover:w-[22em] xl:w-[22em] fixed h-screen border-r-2 border-[#E1E1E1] dark:border-neutral-700 flex flex-col">
       <Link
         href="/"
         className="logo flex justify-start items-center gap-2 pt-36 px-8 pb-16"
@@ -21,14 +21,14 @@ const Sidebar = () => {
             alt="Voltec Logo"
           />
         </div>
-        <h1 className="text-2xl md:text-4xl tracking-tight font-bold dark:text-headings-dark">
+        <h1 className="hidden xl:block text-2xl md:text-4xl tracking-tight font-bold dark:text-headings-dark">
           vol<span className="text-[#489FD0]">tec</span>.link
         </h1>
       </Link>
-      <div className="create-new-link-button pb-2 px-8">
+      <div className="create-new-link-button pb-2 px-6 xl:px-8">
         <Link
           href="/dashboard/create"
-          className="text-lg bg-primary flex justify-start items-center gap-2 text-white p-2 rounded-xl w-full"
+          className="text-lg bg-primary flex justify-center xl:justify-start items-center gap-2 text-white p-2 rounded-xl w-full"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -44,14 +44,14 @@ const Sidebar = () => {
               d="M12 4.5v15m7.5-7.5h-15"
             />
           </svg>
-          Create link
+          <span className="xl:inline hidden">Create link</span>
         </Link>
       </div>
-      <div className="actions px-8 flex flex-col text-headings dark:text-headings-dark">
+      <div className="actions px-6 xl:px-8 flex flex-col text-headings dark:text-headings-dark">
         <div className="links py-2 text-lg">
           <Link
             href="/dashboard/links"
-            className={`flex justify-start items-center gap-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 p-2 rounded-xl`}
+            className={`flex justify-center xl:justify-start items-center gap-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 p-2 rounded-xl`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -67,13 +67,13 @@ const Sidebar = () => {
                 d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
               />
             </svg>
-            Links
+            <span className="xl:inline hidden">Links</span>
           </Link>
         </div>
         <div className="team-members py-2 text-lg">
           <Link
             href="/dashboard/users"
-            className="flex justify-start items-center gap-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 p-2 rounded-xl"
+            className="flex justify-center xl:justify-start items-center gap-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 p-2 rounded-xl"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -89,13 +89,13 @@ const Sidebar = () => {
                 d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
               />
             </svg>
-            Team Members
+            <span className="xl:inline hidden">Team Members</span>
           </Link>
         </div>
         <div className="settings py-2 text-lg">
           <Link
             href="/dashboard/settings"
-            className="flex justify-start items-center gap-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 p-2 rounded-xl"
+            className="flex justify-center xl:justify-start items-center gap-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 p-2 rounded-xl"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -116,13 +116,13 @@ const Sidebar = () => {
                 d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
               />
             </svg>
-            Settings
+            <span className="xl:inline hidden">Settings</span>
           </Link>
         </div>
       </div>
       <Link
         href="/dashboard/settings"
-        className="user px-8 pb-8 flex gap-2 justify-start items-center"
+        className="mt-auto user px-6 xl:px-8 pb-2 xl:pb-8 flex gap-2 justify-start items-center"
       >
         <div className="profile-picture h-16 w-16">
           <Image
@@ -137,7 +137,7 @@ const Sidebar = () => {
             width={250}
           />
         </div>
-        <div className="info flex flex-col gap-1">
+        <div className="info xl:flex flex-col gap-1 hidden">
           <h1 className="text-base text-headings dark:text-headings-dark">
             {session.status == "authenticated"
               ? session.data.user?.email
