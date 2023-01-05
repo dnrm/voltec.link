@@ -7,58 +7,23 @@ import Layout from "../../components/Layout";
 import Button from "../../components/Button";
 import Option from "../../components/links/Option";
 
-const Dashboard = () => {
-  const [links, setLinks] = useState([]);
-  const [selectedLink, setSelectedLink] = useState({});
+import clientPromise from "../../lib/mongodb";
 
-  const fetchLinks = async () => {
-    return [
-      {
-        id: 1,
-        name: "Google",
-        url: "https://google.com",
-        shortUrl: "https://voltec.link/google",
-        creationDate: new Date().toDateString(),
-        clicks: 6483,
-      },
-      {
-        id: 2,
-        name: "Instagram",
-        url: "https://www.instagram.com/voltecrobotics6647/",
-        shortUrl: "https://voltec.link/instagram",
-        creationDate: new Date().toDateString(),
-        clicks: 2394857,
-      },
-      {
-        id: 3,
-        name: "dani's website",
-        url: "https://medina.dev/",
-        shortUrl: "https://voltec.link/medina",
-        creationDate: new Date().toDateString(),
-        clicks: 100222,
-      },
-    ];
-  };
+const Dashboard = ({ linksFromServer }) => {
+  const [links, setLinks] = useState(linksFromServer);
+  const [selectedLink, setSelectedLink] = useState({});
 
   const selectLink = (e) => {
     setSelectedLink(links[e.target.id]);
   };
 
   const copyLink = () => {
-    navigator.clipboard.writeText(selectedLink.shortUrl);
+    navigator.clipboard.writeText('https://voltec.link/' + selectedLink.shortUrl);
     toast.success("Copied link to clipboard!", {
       position: "top-right",
       duration: 3000,
     });
   };
-
-  useEffect(() => {
-    const fetchLinkData = async () => {
-      const links = await fetchLinks();
-      setLinks(links);
-    };
-    fetchLinkData();
-  }, []);
 
   return (
     <Layout pageTitle={"Links"}>
@@ -80,7 +45,9 @@ const Dashboard = () => {
                       {link.name}
                     </p>
                     <div className="stats flex justify-between items-center pointer-events-none">
-                      <p className="text-primary underline">{link.shortUrl}</p>
+                      <p className="text-primary underline">
+                        https://voltec.link/{link.shortUrl}
+                      </p>
                       <p className="text-neutral-400 dark:text-neutral-700">
                         {new Intl.NumberFormat("en-UK", {
                           notation: "compact",
@@ -123,12 +90,12 @@ const Dashboard = () => {
                   </div>
                   <div className="copy-link-section flex justify-between items-center bg-white dark:bg-neutral-800 pl-6 p-4 border-[#E1E1E1] dark:border-neutral-700 border-2 rounded-xl">
                     <a
-                      href={selectedLink.shortUrl}
+                      href={"https://voltec.link/" + selectedLink.shortUrl}
                       target="_blank"
                       rel="noreferrer"
                       className="text-2xl font-bold text-primary underline"
                     >
-                      {selectedLink.shortUrl}
+                      {"https://voltec.link/" + selectedLink.shortUrl}
                     </a>
                     <button
                       onClick={copyLink}
@@ -242,9 +209,7 @@ const Dashboard = () => {
                       />
                       <Option
                         label="Delete"
-                        onClick={() =>
-                          toast.error("deleteee 🤯🤯🤯")
-                        }
+                        onClick={() => toast.error("deleteee 🤯🤯🤯")}
                         className={
                           "bg-red-100 text-red-400 border-red-300 hover:bg-red-200"
                         }
@@ -268,7 +233,28 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-              ) : null}
+              ) : (
+                <div className="no-selected-link h-full w-full flex flex-col justify-center items-center gap-8">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-28 h-28"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
+                    />
+                  </svg>
+
+                  <h1 className="text-2xl md:text-4xl tracking-tight font-bold">
+                    Select a link
+                  </h1>
+                </div>
+              )}
             </div>
           </div>
         ) : (
@@ -303,3 +289,16 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+export async function getServerSideProps() {
+  const client = await clientPromise;
+  const db = client.db("url-shortener");
+
+  const links = await db.collection("links").find({}).toArray();
+
+  return {
+    props: {
+      linksFromServer: JSON.parse(JSON.stringify(links)),
+    },
+  };
+}
