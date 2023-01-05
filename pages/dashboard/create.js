@@ -1,10 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../components/Layout";
+import { toast } from "react-hot-toast";
 
-const create = () => {
+const Create = () => {
+  const [destination, setDestination] = useState("");
+  const [name, setName] = useState("");
+  const [shortUrl, setShortUrl] = useState("");
+
+  const handleDestinationChange = (e) => {
+    setDestination(e.target.value);
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleShortUrlChange = (e) => {
+    setShortUrl(e.target.value);
+  };
+
   const createLink = async (e) => {
     e.preventDefault();
-    console.log("uwu");
+
+    const request = await fetch("/api/create-link", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        destination,
+        name,
+        shortUrl,
+        creationDate: new Date().toISOString(),
+      }),
+    });
+
+    console.log(request.status);
+
+    if (request.status === 200) {
+      toast.success("Successfully created link!");
+    } else {
+      const { message } = await request.json();
+      toast.error("Uh oh, an error occurred: " + message);
+    }
   };
 
   return (
@@ -22,6 +60,9 @@ const create = () => {
             Destination
           </label>
           <input
+            onChange={handleDestinationChange}
+            required={true}
+            value={destination}
             type="text"
             name="destination"
             id="destination"
@@ -37,6 +78,9 @@ const create = () => {
             Name
           </label>
           <input
+            onChange={handleNameChange}
+            required={true}
+            value={name}
             type="text"
             name="name"
             id="name"
@@ -57,6 +101,9 @@ const create = () => {
             </p>
             <p>/</p>
             <input
+              onChange={handleShortUrlChange}
+              required={true}
+              value={shortUrl}
               type="text"
               name="name"
               id="name"
@@ -79,4 +126,4 @@ const create = () => {
   );
 };
 
-export default create;
+export default Create;

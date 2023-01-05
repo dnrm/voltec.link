@@ -27,7 +27,7 @@ const Dashboard = ({ linksFromServer }) => {
 
   return (
     <Layout pageTitle={"Links"}>
-      <div className="links-page h-[75vh]">
+      <div className="links-page h-[78vh]">
         {links.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-3 w-full h-full">
             <div className="col-span-1 border-r-2 border-[#E1E1E1]">
@@ -59,7 +59,7 @@ const Dashboard = ({ linksFromServer }) => {
                 );
               })}
             </div>
-            <div className="col-span-1 md:col-span-2 p-8 bg-neutral-100">
+            <div className="col-span-1 md:col-span-2 p-8 h-full bg-neutral-100">
               {Object.keys(selectedLink).length != 0 ? (
                 <div className="flex flex-col gap-6">
                   <div className="heading">
@@ -85,12 +85,12 @@ const Dashboard = ({ linksFromServer }) => {
                       </button>
                     </div>
                     <p className="pt-2 text-neutral-400 dark:text-neutral-700">
-                      Created {selectedLink.creationDate}
+                      Created {new Date(selectedLink.creationDate).toLocaleDateString()} at {new Date(selectedLink.creationDate).toLocaleTimeString()}
                     </p>
                   </div>
                   <div className="copy-link-section flex justify-between items-center bg-white dark:bg-neutral-800 pl-6 p-4 border-[#E1E1E1] dark:border-neutral-700 border-2 rounded-xl">
                     <a
-                      href={"https://voltec.link/" + selectedLink.shortUrl}
+                      href={'/' + selectedLink.shortUrl}
                       target="_blank"
                       rel="noreferrer"
                       className="text-2xl font-bold text-primary underline"
@@ -136,12 +136,12 @@ const Dashboard = ({ linksFromServer }) => {
                         />
                       </svg>
                       <a
-                        href={selectedLink.url}
+                        href={selectedLink.destination}
                         target="_blank"
                         rel="noreferrer"
                         className="text-primary underline cursor-pointer"
                       >
-                        {selectedLink.url}
+                        {selectedLink.destination}
                       </a>
                     </div>
                   </div>
