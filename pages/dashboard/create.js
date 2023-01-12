@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 const Create = () => {
+  const router = useRouter();
   const [destination, setDestination] = useState("");
   const [name, setName] = useState("");
   const [shortUrl, setShortUrl] = useState("");
@@ -39,6 +41,7 @@ const Create = () => {
 
     if (request.status === 200) {
       toast.success("Successfully created link!");
+      router.push("/dashboard")
     } else {
       const { message } = await request.json();
       toast.error("Uh oh, an error occurred: " + message);
