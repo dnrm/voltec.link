@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 
 import Navigation from "../components/Navigation";
 import Button from "../components/Button";
@@ -26,10 +27,7 @@ export default function Home() {
           property="og:description"
           content="Create easily-shareable and customised links for whatever type of content, wether it is social media accounts, invitations, or meeting invitations."
         />
-        <meta
-          property="og:image"
-          content="/meta.png"
-        />
+        <meta property="og:image" content="/meta.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://volteclink.medina.dev/" />
@@ -41,10 +39,7 @@ export default function Home() {
           property="twitter:description"
           content="Create easily-shareable and customised links for whatever type of content, wether it is social media accounts, invitations, or meeting invitations."
         />
-        <meta
-          property="twitter:image"
-          content="/meta.png"
-        />
+        <meta property="twitter:image" content="/meta.png" />
       </Head>
       <div className="flex justify-center items-center announcement w-full bg-primary p-2 text-lg text-white font-normal">
         <p className="w-full text-center">🚧 Work in progress 🚧</p>
@@ -81,7 +76,9 @@ export default function Home() {
             invitations.
           </p>
           <div className="cta text-center">
-            <Button cta={true}>Start creating</Button>
+            <Link href={'/dashboard'}>
+              <Button cta={true}>Start creating</Button>
+            </Link>
           </div>
         </section>
         <section

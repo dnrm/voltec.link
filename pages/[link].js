@@ -28,6 +28,12 @@ export async function getServerSideProps(context) {
     };
   }
 
+  try {
+    db.collection("links").updateOne({ shortUrl: context.query.link }, { $inc: { clicks: 1 } });
+  } catch (e) {
+    console.log(e);
+  }
+
   return {
     redirect: {
       destination: link.destination,

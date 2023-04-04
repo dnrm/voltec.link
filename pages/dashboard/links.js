@@ -1,7 +1,8 @@
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { toast } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 import Layout from "../../components/Layout";
 import Button from "../../components/Button";
@@ -18,7 +19,9 @@ const Dashboard = ({ linksFromServer }) => {
   };
 
   const copyLink = () => {
-    navigator.clipboard.writeText('https://voltec.link/' + selectedLink.shortUrl);
+    navigator.clipboard.writeText(
+      "https://voltec.link/" + selectedLink.shortUrl
+    );
     toast.success("Copied link to clipboard!", {
       position: "top-right",
       duration: 3000,
@@ -31,6 +34,7 @@ const Dashboard = ({ linksFromServer }) => {
         {links.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-3 w-full h-full">
             <div className="col-span-1 border-r-2 border-[#E1E1E1]">
+              {/* * LINK LIST */}
               {links.map((link, index) => {
                 return (
                   <div
@@ -52,7 +56,7 @@ const Dashboard = ({ linksFromServer }) => {
                         {new Intl.NumberFormat("en-UK", {
                           notation: "compact",
                         }).format(link.clicks)}{" "}
-                        clicks
+                        click{link.clicks == 1 ? "" : "s"}
                       </p>
                     </div>
                   </div>
@@ -60,8 +64,14 @@ const Dashboard = ({ linksFromServer }) => {
               })}
             </div>
             <div className="col-span-1 md:col-span-2 p-8 h-full bg-neutral-100">
+              {/* DISPLAY SELECTED LINK */}
               {Object.keys(selectedLink).length != 0 ? (
-                <div className="flex flex-col gap-6">
+                <motion.div
+                  initial={{ opacity: 0.5 }}
+                  transition={{ duration: 0.5 }}
+                  animate={{ opacity: 1 }}
+                  className="flex flex-col gap-6"
+                >
                   <div className="heading">
                     <div className="name-and-edit flex justify-between items-center">
                       <h1 className="text-5xl font-bold tracking-tight text-headings dark:text-headings-dark">
@@ -85,12 +95,15 @@ const Dashboard = ({ linksFromServer }) => {
                       </button>
                     </div>
                     <p className="pt-2 text-neutral-400 dark:text-neutral-700">
-                      Created {new Date(selectedLink.creationDate).toLocaleDateString()} at {new Date(selectedLink.creationDate).toLocaleTimeString()}
+                      Created{" "}
+                      {new Date(selectedLink.creationDate).toLocaleDateString()}{" "}
+                      at{" "}
+                      {new Date(selectedLink.creationDate).toLocaleTimeString()}
                     </p>
                   </div>
                   <div className="copy-link-section flex justify-between items-center bg-white dark:bg-neutral-800 pl-6 p-4 border-[#E1E1E1] dark:border-neutral-700 border-2 rounded-xl">
                     <a
-                      href={'/' + selectedLink.shortUrl}
+                      href={"/" + selectedLink.shortUrl}
                       target="_blank"
                       rel="noreferrer"
                       className="text-2xl font-bold text-primary underline"
@@ -232,7 +245,7 @@ const Dashboard = ({ linksFromServer }) => {
                       />
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ) : (
                 <div className="no-selected-link h-full w-full flex flex-col justify-center items-center gap-8">
                   <svg
