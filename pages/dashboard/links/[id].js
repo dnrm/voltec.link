@@ -1,33 +1,10 @@
-import Link from "next/link";
-import React, { useState } from "react";
+import React from 'react'
+import Layout from '../../../components/Layout';
+import { motion } from 'framer-motion';
+import Option from '../../../components/links/Option';
+import Button from '../../../components/Button';
 
-import { toast } from "react-hot-toast";
-import { motion } from "framer-motion";
-
-import Layout from "../../components/Layout";
-import Button from "../../components/Button";
-import Option from "../../components/links/Option";
-
-import clientPromise from "../../lib/mongodb";
-
-const Dashboard = ({ linksFromServer }) => {
-  const [links, setLinks] = useState(linksFromServer);
-  const [selectedLink, setSelectedLink] = useState({});
-
-  const selectLink = (e) => {
-    setSelectedLink(links[e.target.id]);
-  };
-
-  const copyLink = () => {
-    navigator.clipboard.writeText(
-      "https://voltec.link/" + selectedLink.shortUrl
-    );
-    toast.success("Copied link to clipboard!", {
-      position: "top-right",
-      duration: 3000,
-    });
-  };
-
+const Link = () => {
   return (
     <Layout pageTitle={"Links"}>
       <div className="links-page h-[78vh]">
@@ -298,20 +275,7 @@ const Dashboard = ({ linksFromServer }) => {
         )}
       </div>
     </Layout>
-  );
-};
-
-export default Dashboard;
-
-export async function getServerSideProps() {
-  const client = await clientPromise;
-  const db = client.db("url-shortener");
-
-  const links = await db.collection("links").find({}).toArray();
-
-  return {
-    props: {
-      linksFromServer: JSON.parse(JSON.stringify(links)),
-    },
-  };
+  )
 }
+
+export default Link

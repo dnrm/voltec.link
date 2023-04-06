@@ -14,31 +14,35 @@ const MobileNavigation = () => {
     <div
       className={`mobile-navigation ${
         isOpen ? "shadow-xl border-b-2 border-[#E1E1E1]" : null
-      } z-50 pb-2`}
+      } z-50 pb-2 fixed`}
     >
-      <AnimatePresence mode="wait">
-        {!isOpen ? (
-          <div className={`hamburger cursor-pointer p-5`} onClick={toggle}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-8 h-8"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-          </div>
-        ) : (
+      {!isOpen ? (
+        <div
+          className={`hamburger absolute cursor-pointer p-5`}
+          onClick={toggle}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-8 h-8"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </div>
+      ) : null}
+      <AnimatePresence>
+        {isOpen ? (
           <motion.div
             key="x-section"
             exit={{ backgroundColor: "transparent" }}
-            className={`x-button cursor-pointer p-5 bg-white`}
+            className={`x-button absolute cursor-pointer p-5`}
             onClick={toggle}
           >
             <svg
@@ -56,15 +60,16 @@ const MobileNavigation = () => {
               />
             </svg>
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
       <AnimatePresence>
         {isOpen ? (
           <motion.div
             key={"navbar"}
             initial={{ height: 0 }}
-            animate={{ height: "33vh" }}
-            exit={{ height: 0 }}
+            animate={{ height: "100vh", paddingTop: "2.5rem" }}
+            exit={{ height: 0, paddingTop: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
             className={`w-screen px-5 overflow-hidden bg-white`}
           >
             <Link
@@ -80,7 +85,7 @@ const MobileNavigation = () => {
                   alt="Voltec Logo"
                 />
               </div>
-              <h1 className="group-hover:block transition-all duration-200 text-2xl md:text-4xl tracking-tight font-bold dark:text-headings-dark">
+              <h1 className="group-hover:block transition-all duration-200 text-4xl tracking-tight font-bold dark:text-headings-dark">
                 vol<span className="text-[#489FD0]">tec</span>.link
               </h1>
             </Link>
