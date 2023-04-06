@@ -1,13 +1,15 @@
 import "../styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
-import { AnimatePresence } from "framer-motion";
+import { Links } from "../context/linkscontext";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
-      <Toaster />
+      <Links>
+        <Component {...pageProps} />
+        <Toaster />
+      </Links>
     </SessionProvider>
   );
 }

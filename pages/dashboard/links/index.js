@@ -127,7 +127,7 @@ export async function getServerSideProps() {
   const client = await clientPromise;
   const db = client.db("url-shortener");
 
-  const links = await db.collection("links").find({}).toArray();
+  const links = await db.collection("links").find({ }).toArray();
 
   return {
     props: {
