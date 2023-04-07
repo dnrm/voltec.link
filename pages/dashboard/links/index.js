@@ -15,7 +15,6 @@ const Dashboard = ({ links }) => {
   const router = useRouter();
 
   const selectLink = (e) => {
-    console.log(links[e.target.id]);
     router.push("/dashboard/links/" + links[e.target.id]._id);
   };
 

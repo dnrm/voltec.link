@@ -1,5 +1,6 @@
+import { ObjectId } from "mongodb";
 import clientPromise from "../../lib/mongodb";
-import reservedUrls from '../../lib/reserved'
+import reservedUrls from "../../lib/reserved";
 
 export default async function handler(req, res) {
   const client = await clientPromise;
@@ -10,17 +11,19 @@ export default async function handler(req, res) {
     return;
   }
 
+  // ! If URL with same name exists, return error
   if (req.body.shortUrl) {
     const existingLink = await db
       .collection("links")
       .findOne({ shortUrl: req.body.shortUrl });
 
-    if (existingLink) {
+    if (existingLink && existingLink._id.toString() != req.body._id) {
       res.status(400).send({ message: "Short URL already exists" });
       return;
     }
   }
 
+  // ! Sanitize input
   if (
     reservedUrls.includes(req.body.shortUrl) ||
     req.body.shortUrl.includes("/") ||
@@ -30,13 +33,18 @@ export default async function handler(req, res) {
     return;
   }
 
-  const document = await db.collection("links").insertOne({
-    destination: req.body.destination,
-    name: req.body.name,
-    shortUrl: req.body.shortUrl,
-    creationDate: req.body.creationDate,
-    clicks: 0,
-  });
+  const document = await db.collection("links").updateOne(
+    { _id: ObjectId(req.body._id) },
+    {
+      $set: {
+        destination: req.body.destination,
+        name: req.body.name,
+        shortUrl: req.body.shortUrl,
+        creationDate: req.body.creationDate,
+        clicks: 0,
+      },
+    }
+  );
 
   console.log(document);
   res.status(200).send({ message: "uwu" });

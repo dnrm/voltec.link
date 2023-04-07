@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .modal {
-  @apply fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 z-50 flex items-center justify-center;
+  @apply fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-60 z-50 flex items-center justify-center;
 }
 
 /* * FONT "Neue Campton" */

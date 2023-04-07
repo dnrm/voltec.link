@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Option from "./Option";
+import Option from "../Option";
 import QRCodeModal from "./QRCodeModal";
 import { AnimatePresence } from "framer-motion";
 
