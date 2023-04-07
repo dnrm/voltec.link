@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
+import Warning from "../components/links/Warning";
 
 import { signIn } from "next-auth/react";
 
@@ -47,8 +48,31 @@ const login = () => {
           </h1>
           <h2 className="text-neutral-400 pt-4 pb-16">
             Log in with your institutional account.
+            <br />
+            <br />
+            <Warning
+              icon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                  />
+                </svg>
+              }
+              label={
+                "Please do not login using email and password unless specified by an admin."
+              }
+            />
           </h2>
-          <div className="input-fields py-2 flex flex-col gap-4">
+          <form className="input-fields py-2 flex flex-col gap-4">
             <div className="email-input flex flex-col gap-2">
               <label
                 htmlFor="email"
@@ -58,9 +82,10 @@ const login = () => {
               </label>
               <input
                 type="text"
+                placeholder="engineer@voltec6647.com"
                 id="email"
                 name="email"
-                className="border-2 border-neutral-100 dark:border-neutral-700 rounded-lg p-2 dark:bg-dark outline-none text-headings dark:text-headings-dark"
+                className="border-2 placeholder:text-neutral-300 border-neutral-200 dark:border-neutral-700 rounded-lg p-2 dark:bg-dark outline-none text-headings dark:text-headings-dark"
               />
             </div>
             <div className="password-input flex flex-col gap-2">
@@ -71,10 +96,11 @@ const login = () => {
                 Password
               </label>
               <input
+                placeholder="••••••••"
                 type="password"
                 id="password"
                 name="password"
-                className="border-2 border-neutral-100 dark:border-neutral-700 rounded-lg p-2 dark:bg-dark outline-none text-headings dark:text-headings-dark"
+                className="border-2 placeholder:text-neutral-300 border-neutral-200 dark:border-neutral-700 rounded-lg p-2 dark:bg-dark outline-none text-headings dark:text-headings-dark"
               />
             </div>
             <div className="login-button w-full pt-4">
@@ -85,7 +111,7 @@ const login = () => {
                 Login
               </button>
             </div>
-          </div>
+          </form>
           <div className="line grid grid-cols-3 items-center justify-center py-8">
             <hr />
             <p className="text-center text-headings dark:text-headings-dark">
@@ -96,7 +122,7 @@ const login = () => {
           <div className="signin-with-google">
             <button
               onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
-              className="flex justify-center items-center gap-2 border-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 border-neutral-100 dark:border-neutral-700 rounded-xl w-full p-2 text-headings dark:text-headings-dark text-lg"
+              className="flex justify-center items-center gap-2 border-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 border-neutral-200 dark:border-neutral-700 rounded-xl w-full p-2 text-headings dark:text-headings-dark text-lg"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
