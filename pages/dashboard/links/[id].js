@@ -133,7 +133,7 @@ const Dashboard = ({ links }) => {
         <div className="options">
           <h2 className="text-2xl font-bold">Options</h2>
           <div className="options-data py-2 flex gap-2">
-            <GenerateQRCodeButton />
+            <GenerateQRCodeButton link={selectedLink.shortUrl} />
             <Option
               label="Share"
               onClick={() =>
@@ -198,7 +198,7 @@ const Dashboard = ({ links }) => {
 
 export default Dashboard;
 
-export async function getServerSideProps(req, res) {
+export async function getServerSideProps() {
   const client = await clientPromise;
   const db = client.db("url-shortener");
 
