@@ -52,8 +52,11 @@ const Footer = () => {
       <hr />
       <div className="copyright-information">
         <p className="text-sm text-gray-400 dark:text-secondary-dark">
-          &copy; {new Date().getFullYear()} VOLTEC Robotics 6647. All rights
-          reserved.
+          &copy; {new Date().getFullYear()}{" "}
+          <a href="https://medina.dev" target="_blank" rel="noreferrer" className="underline text-primary">
+            Daniel Medina
+          </a>
+          . All rights reserved.
         </p>
       </div>
     </div>
