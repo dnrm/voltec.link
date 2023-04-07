@@ -13,7 +13,7 @@ const Layout = ({ children, pageTitle }) => {
       <div className="hidden absolute sm:block ">
         <Sidebar />
       </div>
-      <main className="sm:ml-[6em] xl:ml-[22em]">
+      <main className="sm:ml-[6em] xl:ml-[20em]">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <Header heading={pageTitle} />
           {children}

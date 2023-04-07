@@ -1,31 +1,18 @@
+import React from "react";
+import Layout from "../Layout";
 import Link from "next/link";
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-
-import { toast } from "react-hot-toast";
 import { motion } from "framer-motion";
+import Option from "./Option";
+import Button from "../Button";
 
-import Layout from "../../../components/Layout";
-import Button from "../../../components/Button";
-import Option from "../../../components/links/Option";
-
-import clientPromise from "../../../lib/mongodb";
-
-const Dashboard = ({ links }) => {
-  const router = useRouter();
-
-  const selectLink = (e) => {
-    console.log(links[e.target.id]);
-    router.push("/dashboard/links/" + links[e.target.id]._id);
-  };
-
+const LinksLayout = ({ children, utils }) => {
+  const { selectLink, links } = utils;
   return (
     <Layout pageTitle={"Links"}>
       <div className="links-page h-[78vh]">
-        {/* // * IF LINKS NOT EMPTY */}
         {links.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 w-full h-full">
-            <div className="col-span-1 border-r-2 border-[#E1E1E1] overflow-y-scroll">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full h-full">
+            <div className={`overflow-y-scroll col-span-1 hidden lg:block border-r-2 border-[#E1E1E1]`}>
               {/* * LINK LIST */}
               {links.map((link, index) => {
                 return (
@@ -39,7 +26,7 @@ const Dashboard = ({ links }) => {
                       {link.name}
                     </p>
                     <div className="stats flex justify-between items-center pointer-events-none">
-                      <p className="text-primary underline">
+                      <p className="text-primary underline overflow-ellipsis">
                         https://voltec.link/{link.shortUrl}
                       </p>
                       <p className="text-neutral-400 dark:text-neutral-700">
@@ -52,6 +39,9 @@ const Dashboard = ({ links }) => {
                   </div>
                 );
               })}
+            </div>
+            <div className="col-span-1 md:col-span-2 xl:col-span-2 p-8 h-full bg-neutral-100">
+              {children}
             </div>
           </div>
         ) : (
@@ -85,18 +75,4 @@ const Dashboard = ({ links }) => {
   );
 };
 
-export default Dashboard;
-
-export async function getServerSideProps() {
-  console.log(new Date())
-  const client = await clientPromise;
-  const db = client.db("url-shortener");
-
-  const links = await db.collection("links").find({}).toArray();
-
-  return {
-    props: {
-      links: JSON.parse(JSON.stringify(links)),
-    },
-  };
-}
+export default LinksLayout;
