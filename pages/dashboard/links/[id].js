@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 // * Utilities
 import { toast } from "react-hot-toast";
@@ -42,6 +43,9 @@ const Dashboard = ({ links }) => {
 
   return (
     <LinksLayout utils={{ selectLink, links }}>
+      <Head>
+        <title>{selectedLink.name} | voltec.link</title>
+      </Head>
       <motion.div
         initial={{ opacity: 0.5 }}
         transition={{ duration: 0.5 }}

@@ -38,6 +38,5 @@ export default async function handler(req, res) {
     clicks: 0,
   });
 
-  console.log(document);
   res.status(200).send({ message: "uwu" });
 }

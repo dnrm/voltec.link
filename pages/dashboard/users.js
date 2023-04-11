@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../../components/Layout";
 import Message from "../../components/links/Warning";
 import ListUser from "../../components/users/Users/ListUser";
+import Head from "next/head";
 
 const users = () => {
   const userArray = [
@@ -49,6 +50,9 @@ const users = () => {
 
   return (
     <Layout pageTitle={"Team Members"}>
+      <Head>
+        <title>Users | voltec.link</title>
+      </Head>
       <div className="p-5 lg:p-8">
         <div className="top-actions">
           <button className="flex justify-center items-center gap-2 border-2 border-primary rounded-xl p-4 font-medium text-primary bg-[#d3eaf6] text-xl">

@@ -22,7 +22,7 @@ const Navigation = () => {
       <div className="go-to-dashboard">
         <Link
           href={"/dashboard"}
-          className="text-base md:text-xl flex justify-end items-center gap-2 text-[#489FD0] font-bold tracking-tight"
+          className="text-base md:text-xl flex justify-end items-center gap-2 text-primary font-bold tracking-tight"
         >
           Go to dashboard{" "}
           <svg

@@ -20,6 +20,13 @@ const Footer = () => {
         </div>
         <div className="links-to-socials flex flex-col md:flex-row justify-start items-start md:items-center gap-4 text-neutral-400 dark:text-secondary-dark">
           <a
+            href="https://voltec6647.com/"
+            target={"_blank"}
+            rel="noreferrer"
+          >
+            VOLTEC Robotics 6647
+          </a>
+          <a
             href="https://instagram.com/voltecrobotics6647"
             target={"_blank"}
             rel="noreferrer"

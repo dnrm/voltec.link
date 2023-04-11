@@ -1,13 +1,9 @@
 import Link from "next/link";
-import React, { useState } from "react";
 import { useRouter } from "next/router";
-
-import { toast } from "react-hot-toast";
-import { motion } from "framer-motion";
+import Head from "next/head";
 
 import Layout from "../../../components/Layout";
 import Button from "../../../components/Button";
-import Option from "../../../components/links/Option";
 
 import clientPromise from "../../../lib/mongodb";
 
@@ -20,6 +16,9 @@ const Dashboard = ({ links }) => {
 
   return (
     <Layout pageTitle={"Links"}>
+      <Head>
+        <title>Links | voltec.link</title>
+      </Head>
       <div className="links-page h-[78vh]">
         {/* // * IF LINKS NOT EMPTY */}
         {links.length > 0 ? (

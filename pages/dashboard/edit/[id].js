@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 // * Utilities
 import { toast } from "react-hot-toast";
@@ -54,12 +55,15 @@ const Dashboard = ({ links }) => {
       toast.error("Invalid short URL");
     } else {
       toast.success("Link updated");
-      router.push('/dashboard/links/' + selectedLink._id)
+      router.push("/dashboard/links/" + selectedLink._id);
     }
   };
 
   return (
     <LinksLayout utils={{ selectLink, links }}>
+      <Head>
+        <title>Editing {selectedLink.name} | voltec.link</title>
+      </Head>
       <motion.div
         initial={{ opacity: 0.5 }}
         transition={{ duration: 0.5 }}
