@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import clientPromise from "../../lib/mongodb";
+import clientPromise from "../../../lib/mongodb";
 
 export default async function handler(req, res) {
   const client = await clientPromise;
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 
   const deleted = await db
     .collection("links")
-    .deleteOne({ _id: ObjectId(req.body._id) });
+    .deleteOne({ _id: new ObjectId(req.body._id) });
 
 
   if (deleted.deletedCount === 0) {

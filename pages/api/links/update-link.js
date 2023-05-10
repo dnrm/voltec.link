@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
-import clientPromise from "../../lib/mongodb";
-import reservedUrls from "../../lib/reserved";
+import clientPromise from "../../../lib/mongodb";
+import reservedUrls from "../../../lib/reserved";
 
 export default async function handler(req, res) {
   const client = await clientPromise;
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
   }
 
   const document = await db.collection("links").updateOne(
-    { _id: ObjectId(req.body._id) },
+    { _id: new ObjectId(req.body._id) },
     {
       $set: {
         destination: req.body.destination,
