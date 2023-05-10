@@ -11,14 +11,12 @@ const ListUsers = ({ user }) => {
             className="w-12 h-12 rounded-full object-cover border-2 border-[#E1E1E1]"
           />
           <span className="text-sm lg:text-lg font-medium inline">
-            {user.name}
+            {user.firstName} {user.lastName}
           </span>
         </div>
       </td>
       <td className="p-5 gap-2">
-        <span className="text-sm lg:text-lg font-medium">
-          {user.email}
-        </span>
+        <span className="text-sm lg:text-lg font-medium">{user.email}</span>
       </td>
       <td className="p-5 gap-2">
         <span className="text-sm lg:text-lg font-medium bg-primary rounded-xl py-1 px-2 text-white">
