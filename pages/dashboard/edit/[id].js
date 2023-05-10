@@ -39,7 +39,7 @@ const Dashboard = ({ links }) => {
   };
 
   const handleSave = async () => {
-    const res = await fetch("/api/update-link", {
+    const res = await fetch("/api/links/update-link", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

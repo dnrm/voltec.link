@@ -22,12 +22,12 @@ const ListUsers = ({ user }) => {
       </td>
       <td className="p-5 gap-2">
         <span className="text-sm lg:text-lg font-medium bg-primary rounded-xl py-1 px-2 text-white">
-          Admin
+          {user.role}
         </span>
       </td>
       <td className="p-5 gap-2">
         <span className="text-sm lg:text-lg font-medium">
-          {user.dateJoined.toLocaleDateString()}
+          {new Date(user.dateJoined).toLocaleDateString()}
         </span>
       </td>
       <td className="p-5 gap-2">

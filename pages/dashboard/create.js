@@ -24,7 +24,7 @@ const Create = () => {
   const createLink = async (e) => {
     e.preventDefault();
 
-    const request = await fetch("/api/create-link", {
+    const request = await fetch("/api/links/create-link", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

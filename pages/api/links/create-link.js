@@ -1,5 +1,5 @@
-import clientPromise from "../../lib/mongodb";
-import reservedUrls from '../../lib/reserved'
+import clientPromise from "../../../lib/mongodb";
+import reservedUrls from '../../../lib/reserved'
 
 export default async function handler(req, res) {
   const client = await clientPromise;

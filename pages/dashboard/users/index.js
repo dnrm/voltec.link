@@ -1,53 +1,12 @@
 import React from "react";
-import Layout from "../../components/Layout";
-import Message from "../../components/links/Warning";
-import ListUser from "../../components/users/Users/ListUser";
+import Link from "next/link";
+import Layout from "../../../components/Layout";
+import Message from "../../../components/links/Warning";
+import ListUser from "../../../components/users/Users/ListUser";
 import Head from "next/head";
+import clientPromise from "../../../lib/mongodb";
 
-const users = () => {
-  const userArray = [
-    {
-      name: "Claire Cottril",
-      image: "https://64.media.tumblr.com/498c76372c207dba110705acc9104f5a/7c26ffe34d18f9a2-cc/s1280x1920/59a83e054844cf5bb4f3adbc34d7162714918f66.jpg",
-      email: "clairo@voltec6647.com",
-      dateJoined: new Date(),
-      linksCreated: 6647,
-      role: "Admin",
-    },
-    {
-      name: "Anna Malygon",
-      image: "https://i.imgur.com/ACGqlmx.jpeg",
-      email: "anna@voltec6647.com",
-      dateJoined: new Date(),
-      linksCreated: 6647,
-      role: "Admin",
-    },
-    {
-      name: "Checo Pérez",
-      image: "https://img.redbull.com/images/c_crop,x_700,y_0,h_1620,w_1620/c_fill,w_280,h_280/q_auto,f_auto/redbullcom/2023/3/16/ylpuyulpc0ejqzbkxsrf/sergio-perez-rbr",
-      email: "checolin@voltec6647.com",
-      dateJoined: new Date(),
-      linksCreated: 11,
-      role: "Admin",
-    },
-    {
-      name: "Breakdown",
-      image: "https://media.team254.com/2023/03/96a807e3-2023_600.png",
-      email: "breakdown@voltec6647.com",
-      dateJoined: new Date(),
-      linksCreated: 254,
-      role: "Creator",
-    },
-    {
-      name: "Margie",
-      image: "https://www.citruscircuits.org/uploads/6/9/3/4/6934550/2022-houston-world-champs-319_orig.jpg",
-      email: "margie@voltec6647.com",
-      dateJoined: new Date(),
-      linksCreated: 1678,
-      role: "Creator",
-    },
-  ];
-
+const users = ({ users }) => {
   return (
     <Layout pageTitle={"Team Members"}>
       <Head>
@@ -55,7 +14,10 @@ const users = () => {
       </Head>
       <div className="p-5 lg:p-8">
         <div className="top-actions">
-          <button className="flex justify-center items-center gap-2 border-2 border-primary rounded-xl p-4 font-medium text-primary bg-[#d3eaf6] text-xl">
+          <Link
+            href="/dashboard/users/add"
+            className="flex justify-center items-center gap-2 border-2 border-primary rounded-xl p-4 font-medium text-primary bg-[#d3eaf6] text-xl"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -71,7 +33,7 @@ const users = () => {
               />
             </svg>
             <span className="leading-none">Add user</span>
-          </button>
+          </Link>
         </div>
         <table className="users-table border-2 border-[#E1E1E1] mt-8 w-full rounded-xl">
           <thead className="table-header bg-neutral-100 w-full">
@@ -175,10 +137,8 @@ const users = () => {
             </tr>
           </thead>
           <tbody className="table-body">
-            {userArray.length > 0 ? (
-              userArray.map((user, index) => (
-                <ListUser key={index} user={user} />
-              ))
+            {users.length > 0 ? (
+              users.map((user, index) => <ListUser key={index} user={user} />)
             ) : (
               <tr>
                 <td colSpan={5} className="p-5">
@@ -210,3 +170,16 @@ const users = () => {
 };
 
 export default users;
+
+export async function getServerSideProps(context) {
+  const client = await clientPromise;
+  const db = client.db("url-shortener");
+
+  const users = await db.collection("users").find({}).toArray();
+
+  return {
+    props: {
+      users: JSON.parse(JSON.stringify(users)),
+    },
+  };
+}

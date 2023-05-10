@@ -147,7 +147,7 @@ const Sidebar = () => {
           <h1 className="text-base text-headings dark:text-headings-dark">
             {session.status == "authenticated"
               ? session.data.user?.email
-              : "Guest"}
+              : "Loading..."}
           </h1>
           <div>
             <span className="bg-primary py-1 px-2 rounded-full text-white text-sm">

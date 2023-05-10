@@ -7,7 +7,7 @@ const DeleteModal = ({ link, closeModal }) => {
     console.log(link)
   const router = useRouter();
   const deleteLink = async () => {
-    const res = await fetch(`/api/delete-link`, {
+    const res = await fetch(`/api/links/delete-link`, {
       body: JSON.stringify({
         _id: link._id,
       }),

@@ -1,5 +1,6 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+import { userExistsInDatabase } from "../../../lib/auth";
 
 export const authOptions = {
   providers: [
@@ -14,9 +15,8 @@ export const authOptions = {
     error: "/unauthorised",
   },
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      console.log(user.email.endsWith("@tec.mx"));
-      const isAllowedToSignIn = user.email.endsWith("@tec.mx") ? true : false;
+    async signIn({ user }) {
+      const isAllowedToSignIn = await userExistsInDatabase(user.email);
 
       if (isAllowedToSignIn) {
         return true;
