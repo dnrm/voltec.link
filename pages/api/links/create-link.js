@@ -1,5 +1,5 @@
 import clientPromise from "../../../lib/mongodb";
-import reservedUrls from '../../../lib/reserved'
+import reservedUrls from "../../../lib/reserved";
 
 export default async function handler(req, res) {
   const client = await clientPromise;
@@ -36,7 +36,21 @@ export default async function handler(req, res) {
     shortUrl: req.body.shortUrl,
     creationDate: req.body.creationDate,
     clicks: 0,
+    author: req.body.author,
   });
+
+  if (document.insertedCount > 0) {
+    // increment the linksCreated variable in the user document
+
+    const user = await db
+      .collection("users")
+      .updateOne({ email: req.body.author }, { $inc: { linksCreated: 1 } });
+
+    if (user.modifiedCount === 0) {
+      res.status(500).send({ message: "Failed to increment linksCreated" });
+      return;
+    }
+  }
 
   res.status(200).send({ message: "uwu" });
 }

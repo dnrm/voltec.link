@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 const Create = () => {
+  const session = useSession();
+
   const router = useRouter();
   const [destination, setDestination] = useState("");
   const [name, setName] = useState("");
@@ -24,6 +27,11 @@ const Create = () => {
   const createLink = async (e) => {
     e.preventDefault();
 
+    if (!(session.status === "authenticated")) {
+      toast.error("You must be logged in to create a link!");
+      return;
+    }
+
     const request = await fetch("/api/links/create-link", {
       method: "POST",
       headers: {
@@ -33,6 +41,7 @@ const Create = () => {
         destination,
         name,
         shortUrl,
+        author: session.data.user.email,
         creationDate: new Date().toISOString(),
       }),
     });
@@ -41,7 +50,7 @@ const Create = () => {
 
     if (request.status === 200) {
       toast.success("Successfully created link!");
-      router.push("/dashboard")
+      router.push("/dashboard");
     } else {
       const { message } = await request.json();
       toast.error("Uh oh, an error occurred: " + message);

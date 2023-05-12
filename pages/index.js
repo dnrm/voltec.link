@@ -75,7 +75,7 @@ export default function Home() {
             content, wether it is social media accounts, invitations, or meeting
             invitations.
           </p>
-          <div className="cta text-center">
+          <div className="cta text-center z-50">
             <Link href={'/dashboard'}>
               <Button cta={true}>Start creating</Button>
             </Link>

@@ -2,7 +2,7 @@ import React from "react";
 
 const ListUsers = ({ user }) => {
   return (
-    <tr className=" p-4 border-b-2 border-gray-200">
+    <tr className=" p-4 border-b-2 border-gray-200 hover:bg-gray-100">
       <td className="p-5 gap-2">
         <div className="flex justify-start gap-2 items-center">
           <img
@@ -10,13 +10,18 @@ const ListUsers = ({ user }) => {
             alt="user"
             className="w-12 h-12 rounded-full object-cover border-2 border-[#E1E1E1]"
           />
-          <span className="text-sm lg:text-lg font-medium inline">
+          <span className="text-sm lg:text-lg font-medium inline cursor-pointer hover:underline">
             {user.firstName} {user.lastName}
           </span>
         </div>
       </td>
       <td className="p-5 gap-2">
-        <span className="text-sm lg:text-lg font-medium">{user.email}</span>
+        <a
+          href={"mailto:" + user.email}
+          className="text-sm lg:text-lg font-medium text-primary hover:underline cursor-pointer"
+        >
+          {user.email}
+        </a>
       </td>
       <td className="p-5 gap-2">
         <span className="text-sm lg:text-lg font-medium bg-primary rounded-xl py-1 px-2 text-white">

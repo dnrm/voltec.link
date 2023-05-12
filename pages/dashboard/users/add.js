@@ -13,7 +13,7 @@ const Add = () => {
         firstName: userInfo.firstName,
         lastName: userInfo.lastName,
         profilePicURL: userInfo.profilePicURL,
-        role: userInfo.role,
+        role: userInfo.role ? userInfo.role : "creator",
         email: userInfo.email,
       }),
       headers: {

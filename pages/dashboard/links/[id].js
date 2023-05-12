@@ -78,8 +78,18 @@ const Dashboard = ({ links }) => {
             </Link>
           </div>
           <p className="pt-2 text-neutral-400 dark:text-neutral-700">
-            Created {new Date(selectedLink.creationDate).toLocaleDateString()}{" "}
-            at {new Date(selectedLink.creationDate).toLocaleTimeString()}
+            Created{" "}
+            <span>
+              {new Date(selectedLink.creationDate).toLocaleDateString()}
+            </span>{" "}
+            at{" "}
+            <span>
+              {new Date(selectedLink.creationDate).toLocaleTimeString()}
+            </span>{" "}
+            by
+            {selectedLink.author && (
+              <span className="font-bold text-primary underline cursor-pointer"> {selectedLink.author}</span>
+            )}
           </p>
         </div>
         <div className="copy-link-section flex justify-between items-center bg-white dark:bg-neutral-800 pl-6 p-4 border-[#E1E1E1] dark:border-neutral-700 border-2 rounded-xl">
