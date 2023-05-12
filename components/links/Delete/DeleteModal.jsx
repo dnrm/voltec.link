@@ -34,7 +34,7 @@ const DeleteModal = ({ link, closeModal }) => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
     >
-      <div className="bg-white w-[35em] max-w-2xl m-5 flex flex-col gap-8 rounded-2xl">
+      <div className="bg-white dark:bg-dark w-[35em] max-w-2xl m-5 flex flex-col gap-8 rounded-2xl">
         <div className="heading relative flex justify-start items-end h-24 bg-[#C6E2F1] rounded-t-2xl">
           <div className="title-and-close z-10 p-5 flex justify-between items-center w-full">
             <h1 className="text-5xl font-bold tracking-tight text-headings dark:text-headings-dark">
@@ -57,7 +57,7 @@ const DeleteModal = ({ link, closeModal }) => {
               </svg>
             </div>
           </div>
-          <div className="bg-image rounded-t-2xl h-full overflow-hidden absolute top-0 opacity-30">
+          <div className="bg-image dark:bg-[#5bb6e7] rounded-t-2xl h-full overflow-hidden absolute top-0 opacity-30">
             <Image
               src="/dashboard-bg.png"
               alt="Header background image"
@@ -67,7 +67,7 @@ const DeleteModal = ({ link, closeModal }) => {
             />
           </div>
         </div>
-        <div className="px-8 text-neutral-600 text-xl">
+        <div className="px-8 text-neutral-600 dark:text-neutral-200 text-xl">
           <p>
             Delete &quot;<span className="font-bold italic">{link.name}</span>
             &quot;?

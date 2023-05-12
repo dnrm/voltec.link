@@ -11,8 +11,8 @@ const LinksLayout = ({ children, utils }) => {
     <Layout pageTitle={"Links"}>
       <div className="links-page h-[78vh]">
         {links.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full h-full">
-            <div className={`overflow-y-scroll col-span-1 hidden lg:block border-r-2 border-[#E1E1E1]`}>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 w-full h-full">
+            <div className="col-span-1 border-r-2 border-[#E1E1E1] dark:border-neutral-600 overflow-y-scroll no-scrollbar">
               {/* * LINK LIST */}
               {links.map((link, index) => {
                 return (
@@ -20,16 +20,16 @@ const LinksLayout = ({ children, utils }) => {
                     key={index}
                     id={index}
                     onClick={selectLink}
-                    className={`hover:bg-[#f6f6f6] link border-y-2 first:border-t-0 even:border-y-0 last:border-b-2 border-[#E1E1E1] border-collapse p-5`}
+                    className={`hover:bg-[#f6f6f6] hover:dark:bg-neutral-700 link border-y-2 first:border-t-0 even:border-y-0 last:border-b-2 border-[#E1E1E1] dark:border-neutral-600 border-collapse p-5`}
                   >
-                    <p className="text-xl text-headings dark:text-headings-dark pointer-events-none">
+                    <p className="text-xl text-headings dark:text-neutral-200 pointer-events-none">
                       {link.name}
                     </p>
                     <div className="stats flex justify-between items-center pointer-events-none">
-                      <p className="text-primary underline overflow-ellipsis">
+                      <p className="text-primary underline">
                         https://voltec.link/{link.shortUrl}
                       </p>
-                      <p className="text-neutral-400 dark:text-neutral-700">
+                      <p className="text-neutral-400 dark:text-neutral-300">
                         {new Intl.NumberFormat("en-UK", {
                           notation: "compact",
                         }).format(link.clicks)}{" "}
@@ -40,7 +40,7 @@ const LinksLayout = ({ children, utils }) => {
                 );
               })}
             </div>
-            <div className="col-span-1 md:col-span-2 xl:col-span-2 p-8 h-full bg-neutral-100">
+            <div className="col-span-1 md:col-span-2 xl:col-span-2 p-8 h-full bg-neutral-100 dark:bg-dark">
               {children}
             </div>
           </div>

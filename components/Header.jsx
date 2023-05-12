@@ -7,7 +7,7 @@ const Header = ({ heading }) => {
   const session = useSession();
 
   return (
-    <div className="w-full flex justify-start items-end h-56 bg-[#C6E2F1] dark:bg-[#6BB8E2] border-b-2 border-[#E1E1E1] dark:border-neutral-700 box-content">
+    <div className="w-full flex justify-start items-end h-56 bg-[#C6E2F1] dark:bg-[#5bb6e7] border-b-2 border-[#E1E1E1] dark:border-neutral-700 box-content">
       <div className="page-and-user z-10 flex justify-between items-center w-full p-8">
         <h1 className="text-6xl font-bold tracking-tight">{heading}</h1>
         {/* <Link href="/dashboard/settings">

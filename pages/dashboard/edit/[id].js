@@ -112,7 +112,7 @@ const Dashboard = ({ links }) => {
             type="text"
             onChange={handleShortUrlChange}
             placeholder="Short URL"
-            className="text-xl border-b-4 border-primary"
+            className="text-xl border-b-4 border-primary dark:bg-transparent"
             value={selectedLink.shortUrl}
           />
         </div>

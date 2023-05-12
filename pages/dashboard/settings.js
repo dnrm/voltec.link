@@ -22,6 +22,32 @@ const Settings = () => {
     console.log(userInfo);
   };
 
+  const setAppearance = (e) => {
+    console.log("set appearance");
+
+    switch (e.target.value) {
+      case "light":
+        document.documentElement.classList.remove("dark");
+        break;
+
+      case "dark":
+        document.documentElement.classList.add("dark");
+        break;
+
+      case "system":
+        if (
+          window &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+        ) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+
+        break;
+    }
+  };
+
   return (
     <Layout pageTitle={"Settings"}>
       <Head>
@@ -86,6 +112,7 @@ const Settings = () => {
                 className="border-2 border-neutral-100 dark:border-neutral-700 rounded-lg p-2 dark:bg-dark outline-none text-headings dark:text-headings-dark"
                 name="appearance"
                 id="appearance"
+                onChange={setAppearance}
               >
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>
