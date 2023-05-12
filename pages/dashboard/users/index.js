@@ -1,41 +1,52 @@
 import React from "react";
 import Link from "next/link";
 import Layout from "../../../components/Layout";
-import Message from "../../../components/links/Warning";
 import ListUser from "../../../components/users/Users/ListUser";
 import Head from "next/head";
 import clientPromise from "../../../lib/mongodb";
 
-const users = ({ users }) => {
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../api/auth/[...nextauth]";
+import { getUserFromDatabase } from "../../../lib/auth";
+
+const Users = ({ users, role }) => {
+  const isAdmin = role === "admin" || role === "super-admin";
+
   return (
     <Layout pageTitle={"Team Members"}>
       <Head>
         <title>Users | voltec.link</title>
       </Head>
       <div className="p-5 lg:p-8">
-        <div className="top-actions">
-          <Link
-            href="/dashboard/users/add"
-            className="flex justify-center items-center gap-2 border-2 border-primary rounded-xl p-4 font-medium text-primary bg-[#d3eaf6] text-xl"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2.5}
-              stroke="currentColor"
-              className="w-6 h-6"
+        {isAdmin ? (
+          <div className="top-actions">
+            <Link
+              href="/dashboard/users/add"
+              className="flex justify-center items-center gap-2 border-2 border-primary rounded-xl p-4 font-medium text-primary bg-[#d3eaf6] text-xl"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 4.5v15m7.5-7.5h-15"
-              />
-            </svg>
-            <span className="leading-none">Add user</span>
-          </Link>
-        </div>
-        <table className="users-table border-2 border-[#E1E1E1] mt-8 w-full rounded-xl">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 4.5v15m7.5-7.5h-15"
+                />
+              </svg>
+              <span className="leading-none">Add user</span>
+            </Link>
+          </div>
+        ) : null}
+        <table
+          className={`users-table border-2 border-[#E1E1E1] ${
+            !isAdmin ? "mt-2" : "mt-8"
+          } w-full rounded-xl`}
+        >
           <thead className="table-header bg-neutral-100 w-full">
             <tr className="border-b-2 border-gray-200">
               <td className="p-5 gap-2">
@@ -169,17 +180,23 @@ const users = ({ users }) => {
   );
 };
 
-export default users;
+export default Users;
 
 export async function getServerSideProps(context) {
   const client = await clientPromise;
   const db = client.db("url-shortener");
+
+  const session = getServerSession(context.req, context.res, authOptions);
+  const { user } = await session;
+
+  const currentUser = await getUserFromDatabase(user.email);
 
   const users = await db.collection("users").find({}).toArray();
 
   return {
     props: {
       users: JSON.parse(JSON.stringify(users)),
+      role: currentUser.role,
     },
   };
 }

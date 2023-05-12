@@ -3,6 +3,12 @@ import Layout from "../../../components/Layout";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 
+// Permissions imports
+
+import { hasPermissionTo } from "../../../lib/permissions";
+import { authOptions } from "../../api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
+
 const Add = () => {
   const [userInfo, setUserInfo] = useState({});
   const router = useRouter();
@@ -127,3 +133,32 @@ const Add = () => {
 };
 
 export default Add;
+
+export async function getServerSideProps(context) {
+  const session = getServerSession(context.req, context.res, authOptions);
+  const { user } = await session;
+
+  const hasPermission = await hasPermissionTo(user.email, "create:users");
+
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  if (!hasPermission) {
+    return {
+      redirect: {
+        destination: "/dashboard/users",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { user },
+  };
+}

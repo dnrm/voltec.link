@@ -41,7 +41,7 @@ const Create = () => {
         destination,
         name,
         shortUrl,
-        author: session.data.user.email,
+        author: session.data.user.name,
         creationDate: new Date().toISOString(),
       }),
     });

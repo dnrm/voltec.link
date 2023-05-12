@@ -41,6 +41,10 @@ const Dashboard = ({ links }) => {
     });
   };
 
+  const timeZoneOptions = Intl.DateTimeFormat().resolvedOptions();
+  const timeZone = timeZoneOptions.timeZone;
+  console.log(timeZoneOptions);
+
   return (
     <LinksLayout utils={{ selectLink, links }}>
       <Head>
@@ -81,14 +85,19 @@ const Dashboard = ({ links }) => {
             Created{" "}
             <span>
               {new Date(selectedLink.creationDate).toLocaleDateString()}
-            </span>{" "}
-            at{" "}
+            </span>
+            {/* at{" "}
             <span>
-              {new Date(selectedLink.creationDate).toLocaleTimeString()}
-            </span>{" "}
-            by
+              {Intl.DateTimeFormat("en-US", {
+                timeStyle: "short",
+                timeZone: timeZone,
+              }).format(new Date(selectedLink.creationDate))}
+            </span> */}{" "}
+            by{" "}
             {selectedLink.author && (
-              <span className="font-bold text-primary underline cursor-pointer"> {selectedLink.author}</span>
+              <span className="font-bold text-primary underline cursor-pointer">
+                {selectedLink.author}
+              </span>
             )}
           </p>
         </div>
