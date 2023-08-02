@@ -1,6 +1,14 @@
 import React from "react";
 import { useSession } from "next-auth/react";
 
+const roles = {
+  CREATOR: "Creator",
+  SUPER_ADMIN: "Super admin",
+  ADMIN: "Admin",
+  USER: "User",
+  MEMBER: "Member"
+}
+
 const ListUsers = ({ user }) => {
   const session = useSession();
 
@@ -32,7 +40,7 @@ const ListUsers = ({ user }) => {
       </td>
       <td className="p-5 gap-2">
         <span className="text-sm lg:text-lg font-medium bg-primary rounded-xl py-1 px-2 text-white">
-          {user.role}
+          {roles[user.role]}
         </span>
       </td>
       <td className="p-5 gap-2">

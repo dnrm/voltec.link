@@ -12,6 +12,8 @@ export default async function handler(req, res) {
     return res.status(400).send({ error: "User already exists" });
   }
 
+  console.log(req.body)
+
   const document = await createUserInDatabase({
     firstName: req.body.firstName,
     lastName: req.body.lastName,

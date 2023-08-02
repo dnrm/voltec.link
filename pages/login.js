@@ -3,10 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 import Warning from "../components/links/Warning";
+import { useSession } from "next-auth/react";
 
 import { signIn } from "next-auth/react";
 
-const login = () => {
+const Login = () => {
+  const session = useSession();
+  console.log(session);
+
   const signInWithCredentials = () => {
     toast.error("Signing in with credentials is not supported yet.");
   };
@@ -157,4 +161,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

@@ -41,6 +41,14 @@ const Dashboard = ({ links }) => {
     });
   };
 
+  const share = () => {
+    if (navigator.share) {
+      navigator.share();
+    } else {
+      toast.error("Coming soon for desktop browsers sidugjhsd");
+    }
+  };
+
   const timeZoneOptions = Intl.DateTimeFormat().resolvedOptions();
   const timeZone = timeZoneOptions.timeZone;
   console.log(timeZoneOptions);
@@ -82,17 +90,17 @@ const Dashboard = ({ links }) => {
             </Link>
           </div>
           <p className="pt-2 text-neutral-400 dark:text-neutral-700">
-            Created{" "}
-            <span>
+            Created on{" "}
+            <span className="font-semibold">
               {new Date(selectedLink.creationDate).toLocaleDateString()}
-            </span>
-            {/* at{" "}
-            <span>
+            </span>{" "}
+            at{" "}
+            <span className="font-semibold">
               {Intl.DateTimeFormat("en-US", {
                 timeStyle: "short",
                 timeZone: timeZone,
               }).format(new Date(selectedLink.creationDate))}
-            </span> */}{" "}
+            </span>{" "}
             by{" "}
             {selectedLink.author && (
               <span className="font-bold text-primary underline cursor-pointer">
@@ -164,18 +172,7 @@ const Dashboard = ({ links }) => {
             <GenerateQRCodeButton link={selectedLink.shortUrl} />
             <Option
               label="Share"
-              onClick={() =>
-                toast.success(
-                  <a
-                    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                    target={"_blank"}
-                    rel="noreferrer"
-                    className="text-primary underline cursor-pointer"
-                  >
-                    Coming soon!!! 💀💀💀 skoohol emojeyy 💀💀💀
-                  </a>
-                )
-              }
+              onClick={share}
               color="yellow"
               icon={
                 <svg

@@ -4,13 +4,15 @@ import Layout from "../../../components/Layout";
 import ListUser from "../../../components/users/Users/ListUser";
 import Head from "next/head";
 import clientPromise from "../../../lib/mongodb";
+import { useSession } from "next-auth/react";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]";
 import { getUserFromDatabase } from "../../../lib/auth";
 
 const Users = ({ users, role }) => {
-  const isAdmin = role === "admin" || role === "super-admin";
+  const isAdmin = role === "ADMIN" || role === "SUPER_ADMIN" || role === "CREATOR";
+  console.log(role);
 
   return (
     <Layout pageTitle={"Team Members"}>
@@ -22,7 +24,7 @@ const Users = ({ users, role }) => {
           <div className="top-actions">
             <Link
               href="/dashboard/users/add"
-              className="flex justify-center items-center gap-2 border-2 border-primary rounded-xl p-4 font-medium text-primary bg-[#d3eaf6] text-xl"
+              className="flex justify-center items-center gap-2 border-2 border-primary rounded-xl p-4 font-medium text-primary bg-[#d3eaf6] hover:bg-primary hover:text-white text-xl transition-all duration-100"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

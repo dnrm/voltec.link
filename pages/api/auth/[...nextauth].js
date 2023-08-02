@@ -1,10 +1,13 @@
 import NextAuth from "next-auth/next";
-import GoogleProvider from "next-auth/providers/google";
+import Google from "next-auth/providers/google";
 import { userExistsInDatabase } from "../../../lib/auth";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import clientPromise from "../../../lib/mongodb";
 
 export const authOptions = {
+  // adapter: MongoDBAdapter(clientPromise),
   providers: [
-    GoogleProvider({
+    Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
@@ -15,9 +18,10 @@ export const authOptions = {
     error: "/unauthorised",
   },
   callbacks: {
-    async signIn({ user }) {
+    async signIn({ user, account, profile, email, credentials }) {
       const isAllowedToSignIn = await userExistsInDatabase(user.email);
 
+      // change back to isAllowedToSignIn
       if (isAllowedToSignIn) {
         return true;
       } else {

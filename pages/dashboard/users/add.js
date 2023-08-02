@@ -19,7 +19,7 @@ const Add = () => {
         firstName: userInfo.firstName,
         lastName: userInfo.lastName,
         profilePicURL: userInfo.profilePicURL,
-        role: userInfo.role ? userInfo.role : "creator",
+        role: userInfo.role ? userInfo.role : "MEMBER",
         email: userInfo.email,
       }),
       headers: {
@@ -113,9 +113,14 @@ const Add = () => {
                 setUserInfo({ ...userInfo, role: e.target.value });
               }}
             >
-              <option value="creator">Creator</option>
-              <option value="admin">Admin</option>
-              <option value="super-admin">Super Admin</option>
+              <option value="MEMBER" defaultValue={true}>
+                Member
+              </option>
+              <option value="ADMIN">Admin</option>
+              <option value="SUPER_ADMIN">Super Admin</option>
+              <option value="CREATOR" disabled>
+                Creator
+              </option>
             </select>
           </div>
           <div className="save-button col-span-2">
@@ -138,6 +143,7 @@ export async function getServerSideProps(context) {
   const session = getServerSession(context.req, context.res, authOptions);
   const { user } = await session;
 
+  console.log(user);
   const hasPermission = await hasPermissionTo(user.email, "create:users");
 
   if (!user) {
