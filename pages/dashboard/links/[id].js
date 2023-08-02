@@ -43,7 +43,10 @@ const Dashboard = ({ links }) => {
 
   const share = () => {
     if (navigator.share) {
-      navigator.share();
+      navigator.share({
+        title: selectedLink.name,
+        url: 'https://voltec.link/' + selectedLink.shortUrl,
+      });
     } else {
       toast.error("Coming soon for desktop browsers sidugjhsd");
     }
