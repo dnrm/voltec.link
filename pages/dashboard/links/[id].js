@@ -45,7 +45,7 @@ const Dashboard = ({ links }) => {
     if (navigator.share) {
       navigator.share({
         title: selectedLink.name,
-        url: 'https://voltec.link/' + selectedLink.shortUrl,
+        url: "https://voltec.link/" + selectedLink.shortUrl,
       });
     } else {
       toast.error("Coming soon for desktop browsers sidugjhsd");
@@ -92,7 +92,7 @@ const Dashboard = ({ links }) => {
               </svg>
             </Link>
           </div>
-          <p className="pt-2 text-neutral-400 dark:text-neutral-700">
+          <p className="pt-2 text-sm md:text-base text-neutral-400 dark:text-neutral-700">
             Created on{" "}
             <span className="font-semibold">
               {new Date(selectedLink.creationDate).toLocaleDateString()}
@@ -112,18 +112,18 @@ const Dashboard = ({ links }) => {
             )}
           </p>
         </div>
-        <div className="copy-link-section flex justify-between items-center bg-white dark:bg-neutral-800 pl-6 p-4 border-[#E1E1E1] dark:border-neutral-700 border-2 rounded-xl">
+        <div className="copy-link-section flex gap-4 flex-col md:flex-row justify-start md:justify-between items-start md:items-center bg-white dark:bg-neutral-800 md:pl-6 p-4 border-[#E1E1E1] dark:border-neutral-700 border-2 rounded-xl">
           <a
             href={"/" + selectedLink.shortUrl}
             target="_blank"
             rel="noreferrer"
-            className="text-2xl font-bold text-primary underline"
+            className="text-lg md:text-2xl font-bold text-primary underline"
           >
             {"https://voltec.link/" + selectedLink.shortUrl}
           </a>
           <button
             onClick={copyLink}
-            className="flex justify-center items-center gap-2 border-2 rounded-xl text-neutral-400 border-[#e1e1e1] dark:border-neutral p-3 bg-white hover:bg-neutral-100"
+            className="flex w-full justify-center items-center gap border-2 rounded-xl text-neutral-400 border-[#e1e1e1] dark:border-neutral p-3 bg-white hover:bg-neutral-100"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +163,7 @@ const Dashboard = ({ links }) => {
               href={selectedLink.destination}
               target="_blank"
               rel="noreferrer"
-              className="text-primary underline cursor-pointer"
+              className="text-primary text-xs md text-base: underline cursor-pointer"
             >
               {selectedLink.destination}
             </a>
@@ -171,7 +171,7 @@ const Dashboard = ({ links }) => {
         </div>
         <div className="options">
           <h2 className="text-2xl font-bold">Options</h2>
-          <div className="options-data py-2 flex gap-2">
+          <div className="options-data py-2 flex flex-col md:flex-row gap-2">
             <GenerateQRCodeButton link={selectedLink.shortUrl} />
             <Option
               label="Share"

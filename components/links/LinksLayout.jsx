@@ -11,8 +11,8 @@ const LinksLayout = ({ children, utils }) => {
     <Layout pageTitle={"Links"}>
       <div className="links-page h-[78vh]">
         {links.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 w-full h-full">
-            <div className="col-span-1 border-r-2 border-[#E1E1E1] dark:border-neutral-600 overflow-y-scroll no-scrollbar">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 w-full h-full">
+            <div className="hidden lg:block col-span-1 border-r-2 border-[#E1E1E1] dark:border-neutral-600 overflow-y-scroll no-scrollbar">
               {/* * LINK LIST */}
               {links.map((link, index) => {
                 return (
@@ -40,7 +40,7 @@ const LinksLayout = ({ children, utils }) => {
                 );
               })}
             </div>
-            <div className="col-span-1 md:col-span-2 xl:col-span-2 p-8 h-full bg-neutral-100 dark:bg-dark">
+            <div className="col-span-1 md:col-span-2 p-4 md:p-8 h-full bg-neutral-100 dark:bg-dark">
               {children}
             </div>
           </div>
